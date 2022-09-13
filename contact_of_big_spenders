@@ -1,0 +1,32 @@
+select
+	users.name
+	,users.email
+from 
+	users
+inner join
+(
+			select
+				distinct(user_id)
+			from 
+				(
+				select
+					user_id 
+					,order_id 
+				from orders
+				) orderstemp
+			inner join 
+					(
+					select 
+						order_id
+						,sum(price*quantity)ordertotal
+					from 
+						line_items
+					group by
+						order_id
+					having 
+						sum(price*quantity)>=700
+					) bigorders
+			on orderstemp.order_id=bigorders.order_id
+)bigspenders
+on
+	users.user_id=bigspenders.user_id
