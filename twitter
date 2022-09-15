@@ -1,66 +1,36 @@
 select
 	distinct(case when brian.screen_name is not null
 			then brian.screen_name
-			else
-				(
-				case when eliza.screen_name is not null 
+				when eliza.screen_name is not null 
 				then eliza.screen_name
-				else
-					(
-					case when footsteps.screen_name is not null 
+					when footsteps.screen_name is not null 
 					then footsteps.screen_name
-					else 
-						(case when jtanews.screen_name is not null
+						when jtanews.screen_name is not null
 						then jtanews.screen_name
-						else 
-							(case when nmoster.screen_name is not null
+							when nmoster.screen_name is not null
 							then nmoster.screen_name
-							else
-								(case when rblau.screen_name is not null
+								when rblau.screen_name is not null
 								then rblau.screen_name
-								else 
-									(case when yaffed.screen_name is not null
+									when yaffed.screen_name is not null
 									then yaffed.screen_name
-									else null
-									end)
-								end)
-							end)
-						end)
-					end)
-				end
-				)
-			end) allusers
+										else null
+										end)allusers
 	,(case when brian.followers_count is not null
 		then brian.followers_count
-		else
-			(
-			case when eliza.followers_count is not null 
+			when eliza.followers_count is not null 
 			then eliza.followers_count
-			else
-				(
-				case when footsteps.followers_count is not null 
+				when footsteps.followers_count is not null 
 				then footsteps.followers_count
-				else 
-					(case when jtanews.followers_count is not null
+					when jtanews.followers_count is not null
 					then jtanews.followers_count
-					else 
-						(case when nmoster.followers_count is not null
+						when nmoster.followers_count is not null
 						then nmoster.followers_count
-						else
-							(case when rblau.followers_count is not null
+							when rblau.followers_count is not null
 							then rblau.followers_count
-							else 
-								(case when yaffed.followers_count is not null
+								when yaffed.followers_count is not null
 								then yaffed.followers_count
-								else null
-								end)
-							end)
-						end)
-					end)
-				end)
-			end
-			)
-		end) allfollowers
+									else null
+									end)allfollowers
 from 
 (
 	select 
