@@ -1,0 +1,118 @@
+select
+	distinct(case when brian.screen_name is not null
+			then brian.screen_name
+				when eliza.screen_name is not null 
+				then eliza.screen_name
+					when footsteps.screen_name is not null 
+					then footsteps.screen_name
+						when jtanews.screen_name is not null
+						then jtanews.screen_name
+							when nmoster.screen_name is not null
+							then nmoster.screen_name
+								when rblau.screen_name is not null
+								then rblau.screen_name
+									when yaffed.screen_name is not null
+									then yaffed.screen_name
+										else null
+										end)allusers
+	,(case when brian.followers_count is not null
+		then brian.followers_count
+			when eliza.followers_count is not null 
+			then eliza.followers_count
+				when footsteps.followers_count is not null 
+				then footsteps.followers_count
+					when jtanews.followers_count is not null
+					then jtanews.followers_count
+						when nmoster.followers_count is not null
+						then nmoster.followers_count
+							when rblau.followers_count is not null
+							then rblau.followers_count
+								when yaffed.followers_count is not null
+								then yaffed.followers_count
+									else null
+									end)allfollowers
+from 
+(
+	select 
+		distinct(id)
+		,screen_name
+		,followers_count 
+	from 
+		ElizaShapiro$
+	where
+		followers_count>5000
+) eliza
+full outer join
+		(
+		select 
+			distinct(id)
+			,screen_name
+			,followers_count 
+		from 
+			BrianRosenthal$
+		where
+			followers_count>5000
+		) brian
+on brian.screen_name=eliza.screen_name
+full outer join
+			(
+			select 
+				distinct(id)
+				,screen_name
+				,followers_count 
+			from 
+				Footsteps$
+			where
+				followers_count>5000
+				)footsteps
+on footsteps.screen_name=brian.screen_name or Footsteps.screen_name=eliza.screen_name
+full outer join
+				(
+				select 
+					distinct(id)
+					,screen_name
+					,followers_count 
+				from 
+					JTANews$
+				where
+					followers_count>5000
+					)jtanews
+on jtanews.screen_name=brian.screen_name or jtanews.screen_name=eliza.screen_name or jtanews.screen_name=footsteps.screen_name
+full outer join
+					(
+					select 
+						distinct(id)
+						,screen_name
+						,followers_count 
+					from 
+						Nmoster$
+					where
+						followers_count>5000
+					)nmoster
+on nmoster.screen_name=brian.screen_name or nmoster.screen_name=eliza.screen_name or nmoster.screen_name=footsteps.screen_name or nmoster.screen_name=jtanews.screen_name
+full outer join
+						(
+						select 
+							distinct(id)
+							,screen_name
+							,followers_count 
+						from 
+							RBlau$
+						where
+							followers_count>5000
+						)rblau
+on rblau.screen_name=brian.screen_name or rblau.screen_name=eliza.screen_name or rblau.screen_name=footsteps.screen_name or rblau.screen_name=jtanews.screen_name or rblau.screen_name=nmoster.screen_name
+full outer join 
+							(
+							select 
+								distinct(id)
+								,screen_name
+								,followers_count 
+							from 
+								YAFFED$
+							where
+								followers_count>5000
+							)yaffed
+on yaffed.screen_name=brian.screen_name or yaffed.screen_name=eliza.screen_name or yaffed.screen_name=footsteps.screen_name or yaffed.screen_name=jtanews.screen_name or yaffed.screen_name=nmoster.screen_name or yaffed.screen_name=rblau.screen_name
+order by
+	allfollowers desc
