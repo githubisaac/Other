@@ -6,4 +6,4 @@
 
 - State Univeristy Of New York College At Cortland - School Of Professional Studies
 - Major: B.Sc. Sport Management (2021)
-- GPA: 3.1
+- GPA: 3.15
