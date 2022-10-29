@@ -1,4 +1,4 @@
-- My name is Isaac Skenazy. I am experienced in SQL and Tableau, and I am beginning to learn Python. I don't think I'll ever stop learning more about these programs.
+- My name is Isaac Skenazy. I am experienced in SQL and Tableau, and I am currently learning Python. I don't think I'll ever stop learning more about these programs.
 - Please feel free to take a look through my SQL code on my profile and my Tableau dashboards.
 - Github Portfolio Projects: https://github.com/githubisaac/PortfolioProjects
 - Tableau Portfolio Projects: https://public.tableau.com/app/profile/isaac.skenazy
